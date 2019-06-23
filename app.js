@@ -4,34 +4,41 @@ const connectionString = require('./db');
 console.log(connectionString);
 
 // Change these values
-const Applicant = require('./models/applicant');
+const Course = require('./models/course');
 const Student = require('./models/student');
-const data = require('./data/data').studentData;
+const Registration = require('./models/registration');
+const data = require('./data/data').registrationData;
 
 
 async function run() {
     Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
         if (err) throw err;
         console.log('Successfully connected');
-        data.forEach((entry) => {
-            Applicant.findOne({ applicantId: entry[1] }, function (err, applicant) {
-                let obj = new Student({
-                    _id: new Mongoose.Types.ObjectId(),
-                    studentId: entry[0],
-                    applicantId: applicant._id,
-                    currentSemester: entry[2],
-                    userId: entry[3],
-                    password: entry[4]
-                });
+        data.forEach(async (entry) => {
 
-                obj.save((err) => {
-                    if (err) {
-                        console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
-                    } else {
-                        console.log(`Entry ${entry[0]} saved successfully!`);
-                    }
-                });
+            const student = await Student.findOne({ studentId: entry[0] });
+            const course = await Course.findOne({ courseId: entry[1] });
+
+            let obj = new Registration({
+                _id: new Mongoose.Types.ObjectId(),
+                studentId: student._id,
+                courseId: course._id,
+                dateOfExam: entry[2],
+                projectMarks: entry[3],
+                assignmentMarks: entry[4],
+                internalMarks: entry[5],
+                semesterMarks: entry[6],
+                grade: entry[7]
             });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+
         });
     });
 }
