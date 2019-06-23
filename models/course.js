@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const courseSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -21,5 +22,7 @@ const courseSchema = new Schema({
     semesterExamMarks: Number
 });
 
-module.exports = courseSchema;
+const Course = Mongoose.model('Course', courseSchema);
+
+module.exports = Course;
 

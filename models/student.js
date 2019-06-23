@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const studentSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -9,4 +10,6 @@ const studentSchema = new Schema({
     password: {type: String, required: true}
 });
 
-module.exports = studentSchema;
+const Student = Mongoose.model('Student', studentSchema);
+
+module.exports = Student;

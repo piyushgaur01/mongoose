@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const applicantSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -9,4 +10,7 @@ const applicantSchema = new Schema({
     City: String
 });
 
-module.exports = applicantSchema;
+const Applicant = Mongoose.model('Applicant', applicantSchema);
+
+
+module.exports = Applicant;

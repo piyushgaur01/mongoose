@@ -1,0 +1,111 @@
+// Change these values
+const Applicant = require('./models/applicant');
+const data = require('./data/data').applicantData;
+
+        data.forEach((entry) => {
+            let obj = new Applicant({
+                _id: new Mongoose.Types.ObjectId(),
+                applicantId: entry[0],
+                applicantName: entry[1],
+                emailId: entry[2],
+                address: entry[3],
+                city: entry[4]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+        });
+
+
+
+// Change these values
+const Branch = require('./models/branch');
+const data = require('./data/data').branchData;
+
+        data.forEach((entry) => {
+            let obj = new Branch({
+                _id: new Mongoose.Types.ObjectId(),
+                branchId: entry[0],
+                branchName: entry[1]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+        });
+
+
+
+
+// Change these values
+const Course = require('./models/course');
+const Branch = require('./models/branch');
+const data = require('./data/data').courseData;
+
+        data.forEach((entry) => {
+            Branch.findOne({ branchId: entry[3] }, function (err, branch) {
+                let obj = new Course({
+                    _id: new Mongoose.Types.ObjectId(),
+                    courseId: entry[0],
+                    courseName: entry[1],
+                    semester: entry[2],
+                    branchId: branch._id,
+                    elective: entry[4],
+                    projectMarks: entry[5],
+                    assignmentMarks: entry[6],
+                    internalMarks: entry[7],
+                    semesterExamMarks: entry[8]
+                });
+
+                obj.save((err) => {
+                    if (err) {
+                        console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                    } else {
+                        console.log(`Entry ${entry[0]} saved successfully!`);
+                    }
+                });
+            });
+        });
+
+
+
+// Change these values
+const Applicant = require('./models/applicant');
+const Student = require('./models/student');
+const data = require('./data/data').studentData;
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        data.forEach((entry) => {
+            Applicant.findOne({ applicantId: entry[1] }, function (err, applicant) {
+                let obj = new Student({
+                    _id: new Mongoose.Types.ObjectId(),
+                    studentId: entry[0],
+                    applicantId: applicant._id,
+                    currentSemester: entry[2],
+                    userId: entry[3],
+                    password: entry[4]
+                });
+
+                obj.save((err) => {
+                    if (err) {
+                        console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                    } else {
+                        console.log(`Entry ${entry[0]} saved successfully!`);
+                    }
+                });
+            });
+        });
+    });
+}

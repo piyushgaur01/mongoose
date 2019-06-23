@@ -7,9 +7,7 @@ const hostelSchema = new Schema({
     studentId: {type: Schema.Types.ObjectId, ref: 'Student'},
     hostelFee : {
         type: Number,
-        validate: {
-            validator: (v) => v > 0
-        }
+        min: 1
     }
 });
 

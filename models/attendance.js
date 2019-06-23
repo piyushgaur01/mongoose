@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const attendanceSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -6,17 +7,14 @@ const attendanceSchema = new Schema({
     courseId: {type: Schema.Types.ObjectId, ref: 'Course'},
     totalLectureDays : {
         type: Number,
-        validate: {
-            validator: (v) => v > 0
-        }
+        min: 1
     },
     noOfDaysPresent : {
         type: Number,
-        validate: {
-            validator: (v) => v >= 0
-        }
+        min: 0
     },
 });
 
-module.exports = attendanceSchema;
+const Attendance = Mongoose.model('Attendance', attendanceSchema);
+module.exports = Attendance;
 
