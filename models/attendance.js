@@ -3,8 +3,8 @@ const Schema = Mongoose.Schema;
 
 const attendanceSchema = new Schema({
     _id: Schema.Types.ObjectId,
-    studentId: {type: Schema.Types.ObjectId, ref: 'Student'},
-    courseId: {type: Schema.Types.ObjectId, ref: 'Course'},
+    student: {type: Schema.Types.ObjectId, ref: 'Student'},
+    course: {type: Schema.Types.ObjectId, ref: 'Course'},
     totalLectureDays : {
         type: Number,
         min: 1

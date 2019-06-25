@@ -6,7 +6,7 @@ const courseSchema = new Schema({
     courseId: {type: String, required: true, unique: true},
     courseName: {type: String, required: true},
     semester: Number,
-    branchId: {
+    branch: {
         type: Schema.Types.ObjectId,
         ref: 'Branch'
     },

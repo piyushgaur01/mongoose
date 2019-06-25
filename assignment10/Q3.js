@@ -1,15 +1,16 @@
 const Mongoose = require('mongoose');
 const connectionString = require('../db');
 
-const Instructor = require('../models/instructor');
+const CourseAllocation = require('../models/course-allocation');
 
 async function run() {
     Mongoose.connect(connectionString, { useNewUrlParser: true }, async (err) => {
         if (err) throw err;
         console.log('Successfully connected');
-        const date = new Date('01-Jan-2002');
-        const result = await Instructor.find({'dateOfJoining': { $lt: date }}).distinct('instructorName');
-        console.log(result);
+        let instructorIds = await CourseAllocation.find().distinct('instructorId');
+        const courseIds = await CourseAllocation.find().distinct('courseId');
+        console.log(instructorIds);
+        console.log(courseIds);
         process.exit(0);
     });
 }

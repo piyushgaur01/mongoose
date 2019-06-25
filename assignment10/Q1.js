@@ -1,8 +1,6 @@
 const Mongoose = require('mongoose');
 const connectionString = require('../db');
 
-console.log(connectionString);
-
 const Applicant = require('../models/applicant');
 
 async function run() {

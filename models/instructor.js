@@ -13,7 +13,7 @@ const instructorSchema = new Schema({
     },
     instructorName: { type: String, required: true },
     dateOfJoining: Date,
-    departmentId: {type: Schema.Types.ObjectId, ref: 'Department'},
+    department: {type: Schema.Types.ObjectId, ref: 'Department'},
 });
 
 const Instructor = Mongoose.model('Instructor', instructorSchema);

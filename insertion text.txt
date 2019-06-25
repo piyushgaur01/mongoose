@@ -2,6 +2,11 @@
 const Applicant = require('./models/applicant');
 const data = require('./data/data').applicantData;
 
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
         data.forEach((entry) => {
             let obj = new Applicant({
                 _id: new Mongoose.Types.ObjectId(),
@@ -20,6 +25,8 @@ const data = require('./data/data').applicantData;
                 }
             });
         });
+    });
+}
 
 
 
@@ -27,6 +34,11 @@ const data = require('./data/data').applicantData;
 const Branch = require('./models/branch');
 const data = require('./data/data').branchData;
 
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
         data.forEach((entry) => {
             let obj = new Branch({
                 _id: new Mongoose.Types.ObjectId(),
@@ -42,6 +54,8 @@ const data = require('./data/data').branchData;
                 }
             });
         });
+    });
+}
 
 
 
@@ -51,6 +65,11 @@ const Course = require('./models/course');
 const Branch = require('./models/branch');
 const data = require('./data/data').courseData;
 
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
         data.forEach((entry) => {
             Branch.findOne({ branchId: entry[3] }, function (err, branch) {
                 let obj = new Course({
@@ -58,7 +77,7 @@ const data = require('./data/data').courseData;
                     courseId: entry[0],
                     courseName: entry[1],
                     semester: entry[2],
-                    branchId: branch._id,
+                    branch: branch,
                     elective: entry[4],
                     projectMarks: entry[5],
                     assignmentMarks: entry[6],
@@ -75,6 +94,8 @@ const data = require('./data/data').courseData;
                 });
             });
         });
+    });
+}
 
 
 
@@ -92,7 +113,7 @@ async function run() {
                 let obj = new Student({
                     _id: new Mongoose.Types.ObjectId(),
                     studentId: entry[0],
-                    applicantId: applicant._id,
+                    applicant: applicant,
                     currentSemester: entry[2],
                     userId: entry[3],
                     password: entry[4]
@@ -131,8 +152,8 @@ async function run() {
 
             let obj = new Registration({
                 _id: new Mongoose.Types.ObjectId(),
-                studentId: student._id,
-                courseId: course._id,
+                student: student,
+                course: course,
                 dateOfExam: entry[2],
                 projectMarks: entry[3],
                 assignmentMarks: entry[4],
@@ -205,7 +226,7 @@ async function run() {
                 instructorId: entry[0],
                 instructorName: entry[1],
                 dateOfJoining: entry[2],
-                departmentId: department
+                department: department
             });
 
             obj.save((err) => {
@@ -241,8 +262,8 @@ async function run() {
             let obj = new CourseAllocation({
                 _id: new Mongoose.Types.ObjectId(),
                 allocationId: entry[0],
-                courseId: course,
-                instructorId: instructor,
+                course: course,
+                instructor: instructor,
                 startDate: entry[3],
                 endDate: entry[4]
             });
@@ -282,7 +303,7 @@ async function run() {
                 _id: new Mongoose.Types.ObjectId(),
                 hostelId: entry[0],
                 roomNo: entry[1],
-                studentId: student,
+                student: student,
                 hostelFee : entry[3]
             });
 
@@ -298,6 +319,45 @@ async function run() {
             } else {
                 count++;
             }
+        });
+    });
+}
+
+
+
+
+// Change these values
+const Course = require('./models/course');
+const Student = require('./models/student');
+const Attendance = require('./models/attendance');
+const data = require('./data/data').attendanceData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        data.forEach(async (entry) => {
+
+            const student = await Student.findOne({ studentId: entry[0] });
+            const course = await Course.findOne({ courseId: entry[1] });
+
+            let obj = new Attendance({
+                _id: new Mongoose.Types.ObjectId(),
+                student: student,
+                course: course,
+                totalLectureDays: entry[2],
+                noOfDaysPresent: entry[3]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+
         });
     });
 }

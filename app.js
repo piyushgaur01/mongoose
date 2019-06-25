@@ -1,8 +1,6 @@
 const Mongoose = require('mongoose');
 const connectionString = require('./db');
 
-console.log(connectionString);
-
 // Change these values
 const Course = require('./models/course');
 const Student = require('./models/student');
@@ -21,8 +19,8 @@ async function run() {
 
             let obj = new Attendance({
                 _id: new Mongoose.Types.ObjectId(),
-                studentId: student._id,
-                courseId: course._id,
+                student: student,
+                course: course,
                 totalLectureDays: entry[2],
                 noOfDaysPresent: entry[3]
             });
@@ -38,5 +36,7 @@ async function run() {
         });
     });
 }
+
+
 
 run().catch(error => console.error(error.stack));
