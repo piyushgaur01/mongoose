@@ -109,3 +109,195 @@ async function run() {
         });
     });
 }
+
+
+
+
+// Change these values
+const Course = require('./models/course');
+const Student = require('./models/student');
+const Registration = require('./models/registration');
+const data = require('./data/data').registrationData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        data.forEach(async (entry) => {
+
+            const student = await Student.findOne({ studentId: entry[0] });
+            const course = await Course.findOne({ courseId: entry[1] });
+
+            let obj = new Registration({
+                _id: new Mongoose.Types.ObjectId(),
+                studentId: student._id,
+                courseId: course._id,
+                dateOfExam: entry[2],
+                projectMarks: entry[3],
+                assignmentMarks: entry[4],
+                internalMarks: entry[5],
+                semesterMarks: entry[6],
+                grade: entry[7]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+
+        });
+    });
+}
+
+
+
+
+
+// Change these values
+const Department = require('./models/department');
+const data = require('./data/data').departmentData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        data.forEach(async (entry) => {
+
+            let obj = new Department({
+                _id: new Mongoose.Types.ObjectId(),
+                departmentId: entry[0],
+                departmentName: entry[1],
+                headOfDepartment: entry[2]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+
+        });
+    });
+}
+
+
+// Change these values
+const Department = require('./models/department');
+const Instructor = require('./models/instructor');
+const data = require('./data/data').instructorData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        data.forEach(async (entry) => {
+            const department = await Department.findOne({ departmentId: entry[3] });
+            let obj = new Instructor({
+                _id: new Mongoose.Types.ObjectId(),
+                instructorId: entry[0],
+                instructorName: entry[1],
+                dateOfJoining: entry[2],
+                departmentId: department
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+
+        });
+    });
+}
+
+
+
+
+// Change these values
+const Course = require('./models/course');
+const Instructor = require('./models/instructor');
+const CourseAllocation = require('./models/course-allocation');
+const data = require('./data/data').courseAllocationData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        let count = 0;
+        data.forEach(async (entry) => {
+            const course = await Course.findOne({ courseId: entry[1] });
+            const instructor = await Instructor.findOne({ instructorId: entry[2] });
+            let obj = new CourseAllocation({
+                _id: new Mongoose.Types.ObjectId(),
+                allocationId: entry[0],
+                courseId: course,
+                instructorId: instructor,
+                startDate: entry[3],
+                endDate: entry[4]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+            if (count === data.length){
+                process.exit(0);
+            } else {
+                count++;
+            }
+        });
+    });
+}
+
+
+
+// Change these values
+const Student = require('./models/student');
+const Hostel = require('./models/Hostel');
+const data = require('./data/data').hostelData;
+
+
+async function run() {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+        if (err) throw err;
+        console.log('Successfully connected');
+        let count = 0;
+        data.forEach(async (entry) => {
+            const student = await Student.findOne({ studentId: entry[2] });
+            let obj = new Hostel({
+                _id: new Mongoose.Types.ObjectId(),
+                hostelId: entry[0],
+                roomNo: entry[1],
+                studentId: student,
+                hostelFee : entry[3]
+            });
+
+            obj.save((err) => {
+                if (err) {
+                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
+                } else {
+                    console.log(`Entry ${entry[0]} saved successfully!`);
+                }
+            });
+            if (count === data.length){
+                process.exit(0);
+            } else {
+                count++;
+            }
+        });
+    });
+}

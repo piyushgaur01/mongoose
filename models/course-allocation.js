@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const courseAllocationSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -9,5 +10,7 @@ const courseAllocationSchema = new Schema({
     endDate: Date
 });
 
-module.exports = courseAllocationSchema;
+const CourseAllocation = Mongoose.model('Course Allocation', courseAllocationSchema);
+
+module.exports = CourseAllocation;
 

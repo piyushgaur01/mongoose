@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const instructorSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -12,7 +13,9 @@ const instructorSchema = new Schema({
     },
     instructorName: { type: String, required: true },
     dateOfJoining: Date,
-    departmentId: Number
+    departmentId: {type: Schema.Types.ObjectId, ref: 'Department'},
 });
 
-module.exports = instructorSchema;
+const Instructor = Mongoose.model('Instructor', instructorSchema);
+
+module.exports = Instructor;

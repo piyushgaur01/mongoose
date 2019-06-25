@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const hostelSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -11,5 +12,6 @@ const hostelSchema = new Schema({
     }
 });
 
-module.exports = hostelSchema;
+const Hostel = Mongoose.model('Hostel', hostelSchema);
+module.exports = Hostel;
 

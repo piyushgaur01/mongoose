@@ -1,4 +1,5 @@
-const Schema = require('mongoose').Schema;
+const Mongoose = require('mongoose');
+const Schema = Mongoose.Schema;
 
 const departmentSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -7,4 +8,6 @@ const departmentSchema = new Schema({
     headOfDepartment: String
 });
 
-module.exports = departmentSchema;
+const Department = Mongoose.model('Department', departmentSchema);
+
+module.exports = Department;
