@@ -1,0 +1,114 @@
+[
+  {
+    "applicantId": "A001",
+    "applicantName": "Raj",
+    "emailId": "raj@abc.com",
+    "address": "2nd Street,Hebbal",
+    "city": "Mysore"
+  },
+  {
+    "applicantId": "A002",
+    "applicantName": "Vadi",
+    "emailId": "vadi@abc.com",
+    "address": "4th Street,Vijayangar",
+    "city": "Bangalore"
+  },
+  {
+    "applicantId": "A003",
+    "applicantName": "Sam",
+    "emailId": "sam_sundar@abc.com",
+    "address": "5th Street,Edappalli",
+    "city": "Cochin"
+  },
+  {
+    "applicantId": "A004",
+    "applicantName": "Suraj",
+    "emailId": "suraj@abc.com",
+    "address": "1st Main,Rabindra Nagar",
+    "city": "Kolkata)"
+  },
+  {
+    "applicantId": "A005",
+    "applicantName": "Lakshmi",
+    "emailId": "lakshmi@abc.com",
+    "address": "2nd Main,Allipuram",
+    "city": "Vizag"
+  },
+  {
+    "applicantId": "A006",
+    "applicantName": "Sandra",
+    "emailId": "sandra@abc.com",
+    "address": "3rd Corss,RS Puram",
+    "city": "Coimbatore"
+  },
+  {
+    "applicantId": "A007",
+    "applicantName": "Vivek",
+    "emailId": "vivek_kumar@abc.com",
+    "address": "5th Main,Coimbed",
+    "city": "Chennai"
+  },
+  {
+    "applicantId": "A008",
+    "applicantName": "Vikas",
+    "emailId": "vikas@abc.com",
+    "address": "2nd Main,Jayalakhmipuram",
+    "city": "Bangalore"
+  },
+  {
+    "applicantId": "A009",
+    "applicantName": "Bipin",
+    "emailId": "bipin@abc.com",
+    "address": "2nd Cross,Siddarth Nagar",
+    "city": "Mysore"
+  },
+  {
+    "applicantId": "A010",
+    "applicantName": "Gopi",
+    "emailId": "gopi@abc.com",
+    "address": "2nd Street,Green Market",
+    "city": "Delhi"
+  },
+  {
+    "applicantId": "A011",
+    "applicantName": "Sandy",
+    "emailId": "sandy@abc.com",
+    "address": "9th Cross,Seshadripuram",
+    "city": "Bangalore"
+  },
+  {
+    "applicantId": "A012",
+    "applicantName": "Lilly",
+    "emailId": "lilly@abc.com",
+    "address": "9th Main,Banjara Hills",
+    "city": "Hyderabad"
+  },
+  {
+    "applicantId": "A013",
+    "applicantName": "Rose",
+    "emailId": "rose@abc.com",
+    "address": "11th Cross,Kadavanthara",
+    "city": "Cochin"
+  },
+  {
+    "applicantId": "A014",
+    "applicantName": "Megha",
+    "emailId": "megha@abc.com",
+    "address": "10th Lane,Vashi",
+    "city": "Mumbai"
+  },
+  {
+    "applicantId": "A015",
+    "applicantName": "Henry",
+    "emailId": "henry@abc.com",
+    "address": "2nd street,Silk Board",
+    "city": "Bangalore"
+  },
+  {
+    "applicantId": "A016",
+    "applicantName": "Joel",
+    "emailId": "jeol@abc.com",
+    "address": "4th street,Vijayanagar",
+    "city": "Mysore"
+  }
+]

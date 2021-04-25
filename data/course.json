@@ -1,0 +1,112 @@
+[
+  {
+    "courseId": "C001",
+    "courseName": "Programming Fundamentals",
+    "semester": 1,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C002",
+    "courseName": "Data Structures",
+    "semester": 2,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C003",
+    "courseName": "Basics of RDBMS",
+    "semester": 2,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C004",
+    "courseName": "System Software",
+    "semester": 3,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C005",
+    "courseName": "Computer Hardware",
+    "semester": 3,
+    "branch": "B2",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C006",
+    "courseName": "File Structures",
+    "semester": 4,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 60,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 20
+  },
+  {
+    "courseId": "C007",
+    "courseName": "Network Computing",
+    "semester": 4,
+    "branch": "B3",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C008",
+    "courseName": "Data Warehousing",
+    "semester": 5,
+    "branch": "B1",
+    "elective": "Y",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C010",
+    "courseName": "Analysis of Algorithms",
+    "semester": 5,
+    "branch": "B1",
+    "elective": "N",
+    "projectMarks": 20,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 60
+  },
+  {
+    "courseId": "C009",
+    "courseName": "Neural Networks",
+    "semester": 6,
+    "branch": "B2",
+    "elective": "Y",
+    "projectMarks": null,
+    "assignmentMarks": 10,
+    "internalMarks": 10,
+    "semesterExamMarks": 80
+  }
+]

@@ -1,39 +1,64 @@
 const Mongoose = require('mongoose');
+const fs = require('fs');
+
 const connectionString = require('./db');
 
-// Change these values
-const Course = require('./models/course');
-const Student = require('./models/student');
-const Attendance = require('./models/attendance');
-const data = require('./data/data').attendanceData;
+// Models
+const {
+    Movies
+} = require('./models/sample_mflix.js');
 
+// Data
+const {
+    applicantData,
+    attendanceData,
+    branchData,
+    courseAllocationData,
+    courseData,
+    departmentData,
+    hostelData,
+    instructorData,
+    registrationData,
+    studentData,
+} = require('./data');
+
+// const data = [];
+// courseData.forEach((item) => {
+//     data.push({
+//         courseId: item[0],
+//         courseName: item[1],
+//         semester: item[2],
+//         branch: item[3],
+//         elective: item[4],
+//         projectMarks: item[5],
+//         assignmentMarks: item[6],
+//         internalMarks: item[7],
+//         semesterExamMarks: item[8],
+//     });
+// })
+
+// fs.writeFile('./data/course.json', JSON.stringify(data,null, 2), () => {console.log('success')});
 
 async function run() {
-    Mongoose.connect(connectionString, { useNewUrlParser: true }, (err) => {
+    Mongoose.connect(connectionString, { useNewUrlParser: true }, async (err) => {
         if (err) throw err;
         console.log('Successfully connected');
-        data.forEach(async (entry) => {
-
-            const student = await Student.findOne({ studentId: entry[0] });
-            const course = await Course.findOne({ courseId: entry[1] });
-
-            let obj = new Attendance({
-                _id: new Mongoose.Types.ObjectId(),
-                student: student,
-                course: course,
-                totalLectureDays: entry[2],
-                noOfDaysPresent: entry[3]
-            });
-
-            obj.save((err) => {
-                if (err) {
-                    console.log(`Entry ${entry[0]} NOT SAVED!. Error: ${err.message}`);
-                } else {
-                    console.log(`Entry ${entry[0]} saved successfully!`);
-                }
-            });
-
-        });
+        try {
+            // const result = await Movies.aggregate([
+            //     { $match: { year: { $gte: 2000}}},
+            //     { $group: {
+            //         _id: '$year',
+            //         count: { $sum: 1 }
+            //     }}
+            // ]);
+            // result.sort((a, b) => b.count - a.count);
+            const result = await Movies.find({ imdb: { rating: 7.1 }}).select('year title');
+            console.log(result.length);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            Mongoose.connection.close();
+        }
     });
 }
 

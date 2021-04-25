@@ -1,0 +1,26 @@
+[
+  {
+    "branchId": "B1",
+    "branchName": "Information Science"
+  },
+  {
+    "branchId": "B2",
+    "branchName": "Computer Science"
+  },
+  {
+    "branchId": "B3",
+    "branchName": "Electronics"
+  },
+  {
+    "branchId": "B4",
+    "branchName": "Electrical"
+  },
+  {
+    "branchId": "B5",
+    "branchName": "Mechanical"
+  },
+  {
+    "branchId": "B6",
+    "branchName": "Civil"
+  }
+]

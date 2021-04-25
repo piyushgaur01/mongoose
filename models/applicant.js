@@ -7,7 +7,7 @@ const applicantSchema = new Schema({
     applicantName: {type: String, required: true},
     emailId: {type: String, unique: true, required: true},
     address: String,
-    City: String
+    city: String
 });
 
 const Applicant = Mongoose.model('Applicant', applicantSchema);
